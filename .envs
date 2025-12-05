@@ -1,0 +1,5 @@
+export GETDP_TEMPLATES=/usr/share/doc/getdp/examples/templates
+export PETSC_DIR="$HOME/repos/petsc"
+export PETSC_ARCH="arch-opt"
+export GASNet_ROOT="${HOME}/.local"
+export DOTNET_ROOT=$HOME/.dotnet

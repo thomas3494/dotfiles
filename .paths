@@ -1,0 +1,26 @@
+prepend_path() (
+  pathname_to_add="$1"
+  pathname_is_now="$2"
+
+  if [ "" = "${pathname_is_now}" ] ; then   # avoid dangling ":"
+    printf "%s" "${pathname_to_add}"
+  else
+    printf "%s" "${pathname_to_add}:${pathname_is_now}"
+  fi
+)
+
+# Tell shell where executables live
+PATH=$(prepend_path "$HOME/.scripts:$HOME/.dotnet:$HOME/.cargo/bin:/usr/local/cuda-12.6/bin:$HOME/.local/bin" "${PATH:-}") ; export PATH
+
+# Tell compiler where header files live
+CPATH=$(prepend_path "$HOME/.local/include" "${CPATH:-}") ; export CPATH
+
+# Tell compiler where libraries live (for baking paths in executable)
+LIBRARY_PATH=$(prepend_path "$HOME/.local/lib" "${LIBRARY_PATH:-}") ; export LIBRARY_PATH
+
+# Tell dynamic linker where libraries live
+# (in case -rpath did not put this in the binary)
+LD_RUN_PATH=$(prepend_path "$HOME/.local/lib" "${LD_RUN_PATH:-}") ; export LD_RUN_PATH
+
+# Tell the dynamic linker where libraries linked from other libraries live
+LD_LIBRARY_PATH=$(prepend_path "$HOME/.local/lib" "${LD_LIBRARY_PATH:-}") ; export LD_LIBRARY_PATH
