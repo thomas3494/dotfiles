@@ -33,7 +33,10 @@ fi
 
 source .envs
 source .aliases
-source /opt/intel/oneapi/setvars.sh
+ls /opt/intel/oneapi/setvars.sh > /dev/null 2> /dev/null
+if [ $? -eq 0 ]; then
+    source /opt/intel/oneapi/setvars.sh > /dev/null 2> /dev/null
+fi
 
 if [[ -o login ]]; then
     startx

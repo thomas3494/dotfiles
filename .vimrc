@@ -1,6 +1,7 @@
 inoremap jj <Esc>
 set number
-set ai                    " auto indentation
+set autoindent
+set smartindent
 set clipboard=unnamedplus
 set tabstop=4
 set shiftwidth=4
@@ -32,6 +33,4 @@ hi SpellBad ctermfg=015 ctermbg=009 cterm=bold guibg=#ff0000 guifg=#000000 gui=b
 
 set colorcolumn=81
 
-execute pathogen#infect()
 syntax on
-filetype plugin indent on
