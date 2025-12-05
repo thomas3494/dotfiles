@@ -35,13 +35,6 @@ source .envs
 source .aliases
 source /opt/intel/oneapi/setvars.sh
 
-export PATH="$HOME/.scripts:$HOME/.dotnet:$HOME/.cargo/bin:/usr/sbin:/usr/local/cuda-12.6/bin:$PATH:$HOME/.local/bin:/opt/intel/oneapi/compiler/2025.3/bin"
-export CPATH="$HOME/.local/include"
-export LIBRARY_PATH="$HOME/.local/lib:"
-export LD_RUN_PATH="$HOME/.local/lib"
-export LD_PATH="$HOME/.local/lib"
-export LD_LIBRARY_PATH="$HOME/.local/lib"
-
 if [[ -o login ]]; then
     startx
 fi
