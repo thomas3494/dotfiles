@@ -5,18 +5,17 @@ if [ "$#" -ne 0 ]; then
     exit 1
 fi
 
-git clone --bare git@github.com:thomas3494/dotfiles.git $HOME/.dotfiles
+git clone --bare git@github.com:thomas3494/dotfiles.git "$HOME"/.dotfiles
 
-function config {
-   git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
+config()
+{
+    git --git-dir="$HOME"/.dotfiles/ --work-tree="$HOME" "$@"
 }
 
 config checkout
-if [ $? = 0 ]; then
-  echo "Checked out dotfiles from git@github.com:thomas3494/dotfiles.git";
-  else
-    echo "Moving existing dotfiles to ~/.dotfiles-backup";
-    config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
+if ! config checkout
+then
+    echo "Checked out dotfiles from git@github.com:thomas3494/dotfiles.git";
 fi
 
 config checkout
